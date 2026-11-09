@@ -1,0 +1,697 @@
+{
+  "name": "WinterLaws",
+  "display_name": "Законы зимы",
+  "description": "Каждые 30 секунд мир выбирает случайный закон: лунная гравитация, свечение, регенерация или скорость.",
+  "handlers": [
+    {
+      "type": "event",
+      "position": 0,
+      "event": "world_start",
+      "operations": [
+        {
+          "action": "repeat_forever",
+          "values": [],
+          "operations": [
+            {
+              "action": "select_all_players",
+              "values": []
+            },
+            {
+              "action": "set_variable_random_number",
+              "values": [
+                {
+                  "name": "variable",
+                  "value": {
+                    "type": "variable",
+                    "variable": "winter_law",
+                    "scope": "game"
+                  }
+                },
+                {
+                  "name": "min",
+                  "value": {
+                    "type": "number",
+                    "number": 1
+                  }
+                },
+                {
+                  "name": "max",
+                  "value": {
+                    "type": "number",
+                    "number": 4
+                  }
+                },
+                {
+                  "name": "integer",
+                  "value": {
+                    "type": "enum",
+                    "enum": "TRUE"
+                  }
+                }
+              ]
+            },
+            {
+              "action": "if_variable_equals",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "winter_law",
+                    "scope": "game"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 1
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "compare_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "ANY"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "player_clear_potion_effects",
+                  "values": []
+                },
+                {
+                  "action": "player_send_title",
+                  "values": [
+                    {
+                      "name": "title",
+                      "value": {
+                        "type": "text",
+                        "text": "&b&lЗакон зимы",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "subtitle",
+                      "value": {
+                        "type": "text",
+                        "text": "&fЛунная гравитация",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "fade_in",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    },
+                    {
+                      "name": "stay",
+                      "value": {
+                        "type": "number",
+                        "number": 60
+                      }
+                    },
+                    {
+                      "name": "fade_out",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_send_message",
+                  "values": [
+                    {
+                      "name": "messages",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "text",
+                            "text": "&b❄ Закон: &fЛунная гравитация",
+                            "parsing": "legacy"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "merging",
+                      "value": {
+                        "type": "enum",
+                        "enum": "SPACES"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_give_potion_effect",
+                  "values": [
+                    {
+                      "name": "potions",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "potion",
+                            "potion": "minecraft:jump_boost",
+                            "amplifier": 1,
+                            "duration": -1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "overwrite",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "show_icon",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "particle_mode",
+                      "value": {
+                        "type": "enum",
+                        "enum": "REGULAR"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_give_potion_effect",
+                  "values": [
+                    {
+                      "name": "potions",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "potion",
+                            "potion": "minecraft:slow_falling",
+                            "amplifier": 0,
+                            "duration": -1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "overwrite",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "show_icon",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "particle_mode",
+                      "value": {
+                        "type": "enum",
+                        "enum": "REGULAR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "if_variable_equals",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "winter_law",
+                    "scope": "game"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 2
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "compare_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "ANY"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "player_clear_potion_effects",
+                  "values": []
+                },
+                {
+                  "action": "player_send_title",
+                  "values": [
+                    {
+                      "name": "title",
+                      "value": {
+                        "type": "text",
+                        "text": "&b&lЗакон зимы",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "subtitle",
+                      "value": {
+                        "type": "text",
+                        "text": "&eВсе светятся",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "fade_in",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    },
+                    {
+                      "name": "stay",
+                      "value": {
+                        "type": "number",
+                        "number": 60
+                      }
+                    },
+                    {
+                      "name": "fade_out",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_send_message",
+                  "values": [
+                    {
+                      "name": "messages",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "text",
+                            "text": "&b❄ Закон: &eВсе светятся",
+                            "parsing": "legacy"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "merging",
+                      "value": {
+                        "type": "enum",
+                        "enum": "SPACES"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_give_potion_effect",
+                  "values": [
+                    {
+                      "name": "potions",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "potion",
+                            "potion": "minecraft:glowing",
+                            "amplifier": 0,
+                            "duration": -1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "overwrite",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "show_icon",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "particle_mode",
+                      "value": {
+                        "type": "enum",
+                        "enum": "REGULAR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "if_variable_equals",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "winter_law",
+                    "scope": "game"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 3
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "compare_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "ANY"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "player_clear_potion_effects",
+                  "values": []
+                },
+                {
+                  "action": "player_send_title",
+                  "values": [
+                    {
+                      "name": "title",
+                      "value": {
+                        "type": "text",
+                        "text": "&b&lЗакон зимы",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "subtitle",
+                      "value": {
+                        "type": "text",
+                        "text": "&6Мандарины лечат",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "fade_in",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    },
+                    {
+                      "name": "stay",
+                      "value": {
+                        "type": "number",
+                        "number": 60
+                      }
+                    },
+                    {
+                      "name": "fade_out",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_send_message",
+                  "values": [
+                    {
+                      "name": "messages",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "text",
+                            "text": "&b❄ Закон: &6Мандарины лечат",
+                            "parsing": "legacy"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "merging",
+                      "value": {
+                        "type": "enum",
+                        "enum": "SPACES"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_give_potion_effect",
+                  "values": [
+                    {
+                      "name": "potions",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "potion",
+                            "potion": "minecraft:regeneration",
+                            "amplifier": 0,
+                            "duration": -1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "overwrite",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "show_icon",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "particle_mode",
+                      "value": {
+                        "type": "enum",
+                        "enum": "REGULAR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "if_variable_equals",
+              "values": [
+                {
+                  "name": "value",
+                  "value": {
+                    "type": "variable",
+                    "variable": "winter_law",
+                    "scope": "game"
+                  }
+                },
+                {
+                  "name": "compare",
+                  "value": {
+                    "type": "array",
+                    "values": [
+                      {
+                        "type": "number",
+                        "number": 4
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "compare_type",
+                  "value": {
+                    "type": "enum",
+                    "enum": "ANY"
+                  }
+                }
+              ],
+              "operations": [
+                {
+                  "action": "player_clear_potion_effects",
+                  "values": []
+                },
+                {
+                  "action": "player_send_title",
+                  "values": [
+                    {
+                      "name": "title",
+                      "value": {
+                        "type": "text",
+                        "text": "&b&lЗакон зимы",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "subtitle",
+                      "value": {
+                        "type": "text",
+                        "text": "&aБыстрые ноги",
+                        "parsing": "legacy"
+                      }
+                    },
+                    {
+                      "name": "fade_in",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    },
+                    {
+                      "name": "stay",
+                      "value": {
+                        "type": "number",
+                        "number": 60
+                      }
+                    },
+                    {
+                      "name": "fade_out",
+                      "value": {
+                        "type": "number",
+                        "number": 10
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_send_message",
+                  "values": [
+                    {
+                      "name": "messages",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "text",
+                            "text": "&b❄ Закон: &aБыстрые ноги",
+                            "parsing": "legacy"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "merging",
+                      "value": {
+                        "type": "enum",
+                        "enum": "SPACES"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "action": "player_give_potion_effect",
+                  "values": [
+                    {
+                      "name": "potions",
+                      "value": {
+                        "type": "array",
+                        "values": [
+                          {
+                            "type": "potion",
+                            "potion": "minecraft:speed",
+                            "amplifier": 1,
+                            "duration": -1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "overwrite",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "show_icon",
+                      "value": {
+                        "type": "enum",
+                        "enum": "TRUE"
+                      }
+                    },
+                    {
+                      "name": "particle_mode",
+                      "value": {
+                        "type": "enum",
+                        "enum": "REGULAR"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "action": "control_wait",
+              "values": [
+                {
+                  "name": "duration",
+                  "value": {
+                    "type": "number",
+                    "number": 30
+                  }
+                },
+                {
+                  "name": "time_unit",
+                  "value": {
+                    "type": "enum",
+                    "enum": "SECONDS"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
